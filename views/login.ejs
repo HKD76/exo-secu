@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Connexion — Security App</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css"
+      integrity="sha512-v/w6hL8R/UXuNkXgaBxKuXuvM8tsht7+3V6IPhvUW6tI9GOrBRQayGKytQDnaGxpoWl0zIYzYlOygwaiA5e9Yw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      body {
+        margin-top: 4rem;
+      }
+
+      .container {
+        max-width: 420px;
+      }
+
+      .feedback {
+        padding: 1rem;
+        border-radius: 4px;
+        margin-bottom: 1.5rem;
+      }
+
+      .feedback.error {
+        border: 1px solid #e57373;
+        background: #ffebee;
+        color: #c62828;
+      }
+
+      .feedback.success {
+        border: 1px solid #81c784;
+        background: #e8f5e9;
+        color: #2e7d32;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <h1>Security App</h1>
+      <p>Veuillez vous authentifier pour accéder au tableau de bord.</p>
+
+      <% if (message) { %>
+      <div class="feedback success"><%= message %></div>
+      <% } %> <% if (error) { %>
+      <div class="feedback error"><%= error %></div>
+      <% } %>
+
+      <form method="post" action="/login" autocomplete="off">
+        <label for="username">Nom d'utilisateur</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          minlength="3"
+          maxlength="20"
+          pattern="[A-Za-z0-9]+"
+          required
+          value="<%= username || '' %>"
+        />
+
+        <label for="password">Mot de passe</label>
+        <input type="password" id="password" name="password" required />
+
+        <button type="submit">Se connecter</button>
+      </form>
+
+      <section>
+        <h2>Informations de test</h2>
+        <ul>
+          <li>
+            <strong>Admin</strong> — utilisateur « admin », mot de passe «
+            Admin@123! »
+          </li>
+          <li>
+            <strong>Editeur</strong> — utilisateur « editor », mot de passe «
+            Editor@123! »
+          </li>
+          <li>
+            <strong>Lecteur</strong> — utilisateur « viewer », mot de passe «
+            Viewer@123! »
+          </li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>
